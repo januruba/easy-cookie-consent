@@ -1,0 +1,132 @@
+@main-color: #164bb3;
+@text-color: #ffffff;
+@ok-color:  #4caf50;
+@error-color: #f44336;
+
+
+#plcb-slide {
+    width: 100%;
+    max-width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    padding: 2em;
+    line-height: 1em;
+    background: @main-color;
+    color: @text-color;
+    box-sizing: border-box;
+    font-size: .9em;
+    line-height: 1.5em;
+    transform: translateY(100%);
+    transition: transform 1s ease;
+    a {
+      color: @text-color;
+      text-decoration: underline;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    p {
+      line-height: 1.5em;
+    }
+    .inner {
+      line-height: 1.2;
+      font-size: 1em;
+      max-width: 46em;
+      margin: 0 auto;
+    }
+  &.shown {
+    transform: none;
+  }
+}
+#plcb-settings {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 99999;
+    transform: scale(0);
+    overflow: hidden;
+    outline: 0;
+    background: fade(#000, 40%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    padding: 2em;
+    box-sizing: border-box;
+    .popup-window {
+      background: #fff;
+      color: #000;
+      padding: 2em;
+      line-height: 1em;
+      width: 100%;
+      max-width: 26em;
+      position: relative;
+      .plcb-leave {
+        position: absolute;
+        border: none;
+        background: transparent;
+        outline: none;
+        top: 1em;
+        right: 1em;
+        cursor: hand;
+        cursor: pointer;
+        padding: 0;
+        margin: 0;
+        svg {
+          width: 12px;
+          height: 12px;
+          line {
+            stroke: black;
+            transition: stroke 0.5s ease;
+          }
+        }
+        &:hover {
+          svg line {
+            stroke: red;
+          }
+        }
+      }
+    }
+    &.shown {
+      opacity: 1;
+      transform: scale(1);
+    }
+}
+
+.plcb {
+  .plcb-btn {
+    padding: 0.75em 1.5em;
+    margin-top: 1em;
+    border: none;
+    border-radius: 2px;
+    margin-right: 0.75em;
+    background: @text-color;
+    color: @main-color;
+    cursor: hand;
+    cursor: pointer;
+    transition: background 0.5s ease;
+    &:hover {
+      background: darken(@text-color,10);
+    }
+    &.plcb-btn-yes {
+      color: @text-color;
+      background: @ok-color;
+      &:hover {
+        background: darken(@ok-color,10);
+      }
+    }
+    &.plcb-btn-no {
+      color: @text-color;
+      background: @error-color;
+      &:hover {
+        background: darken(@error-color,10);
+      }
+    }
+  }
+}
+  
