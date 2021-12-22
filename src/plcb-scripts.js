@@ -1,7 +1,6 @@
 class Plcb {
   constructor() {
     this.cookieConsentName = 'plcb-consent';
-    this.cookieEssentialName = 'plcb-essential';
     this.cookiePerformanceName = 'plcb-performance';
     this.cookieFunctionalityName = 'plcb-functionality';
     this.cookieAdvertisingName = 'plcb-advertising';
@@ -30,46 +29,69 @@ class Plcb {
   initDom() {
     this.elBar = document.querySelector('#plcb-slide');
     this.elPop = document.querySelector('#plcb-settings');
-    this.elBtnCYes = document.querySelector('button.plcb-a');
-    this.elBtnCNo = document.querySelector('button.plcb-r');
-    this.elBtnSettings = document.querySelector('button.plcb-s');
-    this.elBtnOpen = document.querySelector('*[data-plcb="bar"]');
-    this.elBtnOpenSettings = document.querySelector('*[data-plcb="settings"]');
-    this.elBtnClose = document.querySelector('*[data-plcb="close"]');
+    this.elBtnCYes = document.querySelectorAll('*[data-plcb="accept"]');
+    this.elBtnCNo = document.querySelectorAll('*[data-plcb="refuse"]');
+    this.elBtnSettings = document.querySelectorAll('*[data-plcb="settings"]');
+    this.elBtnOpen = document.querySelectorAll('*[data-plcb="bar"]');
+    this.elBtnClose = document.querySelectorAll('*[data-plcb="close"]');
+    this.elApply = document.querySelectorAll('*[data-plcb="apply"]');
+    
+    this.elInputPerformance = document.querySelector('input[name="' + this.cookiePerformanceName + '"]');
+    this.elInputFunctionality = document.querySelector('input[name="' + this.cookieFunctionalityName + '"]');
+    this.elInputAdvertising = document.querySelector('input[name="' + this.cookieAdvertisingName + '"]');
+    this.elInputAnalytic = document.querySelector('input[name="' + this.cookieAnalyticsName + '"]');
   }
   
   initListeners() {
-    let that = this;
-    this.elBtnCYes.addEventListener("click",() => {    
-      that.setAcceptAll(); 
-      that.proccessUserInput();
+    let plcb = this;
+    
+    this.elBtnCYes.forEach(item => {
+      item.addEventListener('click', event => {
+        plcb.setAcceptAll(); 
+        plcb.proccessUserInput();
+      });  
     });
-    this.elBtnCNo.addEventListener("click",() => {    
-      that.setRefuseAll(); 
-      that.proccessUserInput();
+    
+    this.elBtnCNo.forEach(item => {
+      item.addEventListener('click', event => {
+        plcb.setRefuseAll(); 
+        plcb.proccessUserInput();
+      });  
     });
-    this.elBtnSettings.addEventListener("click",() => {    
-      that.hideBar();
-      that.showPopup(); 
+    
+    this.elBtnSettings.forEach(item => {
+      item.addEventListener('click', event => {
+        plcb.hideBar();
+        plcb.showPopup(); 
+      });  
     });
-    this.elBtnOpenSettings.addEventListener("click",() => {    
-      that.hidePopup();
-      that.showBar(); 
+    
+    this.elBtnOpen.forEach(item => {
+      item.addEventListener('click', event => {
+        plcb.hidePopup();
+        plcb.showBar(); 
+      });  
     });
-    this.elBtnOpenSettings.addEventListener("click",() => {    
-      that.hideBar();
-      that.showPopup(); 
+    
+    this.elBtnClose.forEach(item => {
+      item.addEventListener('click', event => {
+        plcb.hidePopup(); 
+        if(typeof(this.cookieConsent) === 'undefined') {
+          plcb.showBar();
+        }
+      });  
     });
-    this.elBtnClose.addEventListener("click",() => {    
-      that.hidePopup(); 
-      if(typeof(this.cookieConsent) === 'undefined') {
-        this.showBar();
-      }
+    
+    this.elApply.forEach(item => {
+      item.addEventListener('click', event => {
+        plcb.hidePopup(); 
+        plcb.saveSettings();
+        plcb.proccessUserInput();
+      });  
     });
   }
   
   setAcceptAll() {
-    this.cookieEssential = true;
     this.cookiePerformance = true;
     this.cookieFunctionality = true;
     this.cookieAdvertising = true;
@@ -77,19 +99,10 @@ class Plcb {
   }
   
   setRefuseAll() {
-    this.cookieEssential = true;
     this.cookiePerformance = false;
     this.cookieFunctionality = false;
     this.cookieAdvertising = false;
     this.cookieAnalytics = false;
-  }
-  
-  setCustom(cookieEssential,cookiePerformance,cookieFunctionality,cookieAdvertising,cookieAnalytics) {
-    this.cookieEssential = cookieEssential;
-    this.cookiePerformance = cookiePerformance;
-    this.cookieFunctionality = cookieFunctionality;
-    this.cookieAdvertising = cookieAdvertising;
-    this.cookieAnalytics = cookieAnalytics;
   }
   
   proccessUserInput() {
@@ -106,6 +119,7 @@ class Plcb {
   }
   
   showPopup() {
+    this.loadSettings();
     this.elPop.classList.add('shown');
   }
   
@@ -119,7 +133,6 @@ class Plcb {
   
   getCookies() {
     this.cookieConsent = this.getCookie(this.cookieConsentName);
-    this.cookieEssential = this.getCookie(this.cookieEssentialName);
     this.cookiePerformance = this.getCookie(this.cookiePerformanceName);
     this.cookieFunctionality = this.getCookie(this.cookieFunctionalityName);
     this.cookieAdvertising = this.getCookie(this.cookieAdvertisingName);
@@ -142,7 +155,6 @@ class Plcb {
     date.setTime(date.getTime()+(365*24*60*60*1000));
     let expires = "; expires="+date.toUTCString();
     this.setCookie(this.cookieConsentName,this.cookieConsent,expires);
-    this.setCookie(this.cookieEssentialName,this.cookieEssential,expires);
     this.setCookie(this.cookiePerformanceName,this.cookiePerformance,expires);
     this.setCookie(this.cookieFunctionalityName,this.cookieFunctionality,expires);
     this.setCookie(this.cookieAdvertisingName,this.cookieAdvertising,expires);
@@ -172,11 +184,17 @@ class Plcb {
     if(this.cookieAnalytics === 'true' || this.cookieAnalytics === true) this.analyticsCallback();
   }
   
-  leaveSettings() {
-    
+  loadSettings() {
+    this.elInputPerformance.checked = (this.cookiePerformance == true || this.cookiePerformance == 'true');
+    this.elInputFunctionality.checked = (this.cookieFunctionality == true || this.cookieFunctionality == 'true');
+    this.elInputAdvertising.checked = (this.cookieAdvertising == true || this.cookieAdvertising == 'true');
+    this.elInputAnalytic.checked = (this.cookieAnalytics == true || this.cookieAnalytics == 'true');
   }
   
   saveSettings() {
-    
+    this.cookiePerformance = this.elInputPerformance.checked;
+    this.cookieFunctionality = this.elInputFunctionality.checked;
+    this.cookieAdvertising = this.elInputAdvertising.checked;
+    this.cookieAnalytics = this.elInputAnalytic.checked;
   }
 }
