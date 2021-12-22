@@ -1,3 +1,6 @@
+# Demo
+https://januruba.github.io/PL-Cookie-Bar/demo.html
+
 # Build
 npm run build
 
