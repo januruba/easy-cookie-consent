@@ -1,4 +1,4 @@
-# Buld
+# Build
 npm run build
 
 # Usage
