@@ -73,6 +73,7 @@
       <button class="plcb-leave" data-plcb="close"><svg viewPort="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg"> <line x1="1" y1="11" x2="11" y2="1" stroke-width="2"/> <line x1="1" y1="1" x2="11" y2="11"  stroke-width="2"/></svg></button>
       <p><strong>Cookie settings</strong></p>
       <p>You can express your preferences for cookies settings by ticking the box and clicking on the "Accept selected" option (consent to processing), or you can click on the "Refuse" option (you do not consent to the processing of non-essential cookies).</p>
+      <p data-plcb-if="id"><small>Your consent ID: <span data-plcb-fill="id"></span></small></p>
       <div class="plcb-cookie-sec">
         <label>
           <input type="checkbox" name="plcb-essential" checked disabled> Essential cookies
@@ -95,6 +96,7 @@
           <small>These cookies analyze website traffic and what visitors click on the most.</small>
         </label>
       </div>
+      
       <div class="plcb-submit">
         <button type="button" class="plcb-btn plcb-btn-no" data-plcb="refuse">Refuse all</button>
         <button type="button" class="plcb-btn" data-plcb="apply">Apply settings</button>

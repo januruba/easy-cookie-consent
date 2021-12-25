@@ -35,6 +35,8 @@ class Plcb {
     this.elBtnOpen = document.querySelectorAll('*[data-plcb="bar"]');
     this.elBtnClose = document.querySelectorAll('*[data-plcb="close"]');
     this.elApply = document.querySelectorAll('*[data-plcb="apply"]');
+    this.elConsentId = document.querySelectorAll('*[data-plcb-fill="id"]');
+    this.elIfConsentId = document.querySelectorAll('*[data-plcb-if="id"]');
     
     this.elInputPerformance = document.querySelector('input[name="' + this.cookiePerformanceName + '"]');
     this.elInputFunctionality = document.querySelector('input[name="' + this.cookieFunctionalityName + '"]');
@@ -76,7 +78,7 @@ class Plcb {
     this.elBtnClose.forEach(item => {
       item.addEventListener('click', event => {
         plcb.hidePopup(); 
-        if(typeof(this.cookieConsent) === 'undefined') {
+        if(this.consentGiven()) {
           plcb.showBar();
         }
       });  
@@ -120,6 +122,7 @@ class Plcb {
   
   showPopup() {
     this.loadSettings();
+    this.fillData();
     this.elPop.classList.add('shown');
   }
   
@@ -129,6 +132,23 @@ class Plcb {
   
   hidePopup() {
     this.elPop.classList.remove('shown');
+  }
+  
+  fillData() {
+    this.elConsentId.forEach(item => {
+      item.innerHTML = this.cookieConsent;
+    });
+    this.elIfConsentId.forEach(item =>{
+      if(this.consentGiven()) {
+        item.style.display = 'none';
+      } else {
+        item.style.display = 'block';
+      };
+    });
+  }
+  
+  consentGiven() {
+    return typeof(this.cookieConsent) === 'undefined';
   }
   
   getCookies() {
@@ -152,7 +172,7 @@ class Plcb {
   
   setCookies() {
     let date = new Date();
-    date.setTime(date.getTime()+(365*24*60*60*1000));
+    date.setTime(date.getTime()+(5*365*24*60*60*1000));
     let expires = "; expires="+date.toUTCString();
     this.setCookie(this.cookieConsentName,this.cookieConsent,expires);
     this.setCookie(this.cookiePerformanceName,this.cookiePerformance,expires);

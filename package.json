@@ -1,5 +1,5 @@
 {
-  "name": "hbr-blog-wp-template",
+  "name": "plcb-cookie-bar",
   "version": "1.0.0",
   "main": "dist/main.js",
   "directories": {
@@ -10,7 +10,7 @@
     "watch": "gulp watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Jan Uruba",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.12.3",
