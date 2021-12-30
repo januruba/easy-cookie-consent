@@ -20,6 +20,7 @@
     line-height: 1.5em;
     transform: translateY(100%);
     transition: transform 1s ease;
+    z-index: 10000;
     a {
       color: @text-color;
       text-decoration: underline;
@@ -29,6 +30,8 @@
     }
     p {
       line-height: 1.5em;
+      font-size: 0.9em;
+      padding-bottom: 1em;
     }
     .inner {
       line-height: 1.2;
@@ -58,6 +61,7 @@
     transition: opacity 0.5s ease;
     padding: 2em;
     box-sizing: border-box;
+    z-index: 10000;
     .plcb-btn {
       background: #d6d6d6;
       color: @dark-color;
@@ -87,10 +91,22 @@
       cursor: pointer;
       border-top: 1px solid #eeeeee;
       padding: 1em 0 0 0;
+      font-size: 0.9em;
+      input {
+        border: none;
+        background-image: none;
+        background-color: transparent;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        width: auto;
+        appearance: auto;
+      }
       small {
         display: block;
         margin: 1em 0 0 1.75em;
         line-height: 1.2;
+        font-size: 0.8em;
       }
     }
   }
@@ -102,10 +118,18 @@
       width: 100%;
       max-width: 34em;
       position: relative;
+      max-height: 90vh;
+      overflow-y: scroll;
+      &::-webkit-scrollbar { 
+        @media only screen and (min-width: 800px) {
+          display: none;  /* Safari and Chrome */
+        }
+      }
       p {
         margin: 0 0 1em 0;
         line-height: 1.5em;
-        font-size: 1em;
+        font-size: 0.8em;
+        padding: 0; 
       }
       .plcb-leave {
         position: absolute;
