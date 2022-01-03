@@ -1,8 +1,9 @@
-@main-color: #164bb3;
+@main-color: #042c79;
 @text-color: #ffffff;
 @ok-color:  #4caf50;
-@error-color: #f44336;
+@error-color: #bd1309;
 @dark-color: #000;
+@link-color: #2f2f2f;
 
 #plcb-slide {
     width: 100%;
@@ -21,6 +22,32 @@
     transform: translateY(100%);
     transition: transform 1s ease;
     z-index: 10000;
+
+    .plcb-leave {
+      position: absolute;
+      border: none;
+      background: transparent;
+      outline: none;
+      top: 1em;
+      right: 1em;
+      cursor: hand;
+      padding: 0;
+      margin: 0;
+      color: @text-color;
+      svg {
+        width: 12px;
+        height: 12px;
+        line {
+          stroke: @text-color;
+          transition: stroke 0.5s ease;
+        }
+      }
+      &:hover {
+        svg line {
+          stroke: red;
+        }
+      }
+    }
     a {
       color: @text-color;
       text-decoration: underline;
@@ -43,6 +70,7 @@
     transform: none;
   }
 }
+
 #plcb-settings {
     position: fixed;
     top: 0;
@@ -86,11 +114,10 @@
   .plcb-cookie-sec {
     label {
       display: block;
-      margin: 0 0 1em 0;
+      margin: 0 0 .5em 0;
       cursor: hand;
-      cursor: pointer;
       border-top: 1px solid #eeeeee;
-      padding: 1em 0 0 0;
+      padding: .5em 0 0 0;
       font-size: 0.9em;
       input {
         border: none;
@@ -130,6 +157,25 @@
         line-height: 1.5em;
         font-size: 0.8em;
         padding: 0; 
+      }
+      ul {
+        margin: 0 0 1em 0;
+        line-height: 1.5em;
+        font-size: 0.8em;
+        padding: 0;
+        li {
+          margin-left: 1.5em;
+        }
+      }
+      small {
+        display: block;
+        margin: 1em 0 0 1.75em;
+        line-height: 1.2;
+        font-size: 0.8em;
+      }
+      a {
+        text-decoration: none;
+        color: @link-color;
       }
       .plcb-leave {
         position: absolute;
