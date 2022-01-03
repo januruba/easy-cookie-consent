@@ -8,9 +8,22 @@ npm run build
 
 ## Initialization
 ```
-const plcb = new Plcb(); 
+const options = {};
+const plcb = new Plcb(options); 
 plcb.init();
 ```
+
+## Options
+
+| option                | description                                                                                   | default |
+|-----------------------|-----------------------------------------------------------------------------------------------|---------|
+| dayExpires            | [number] Number of days after which the consent cookie expires                                | 365     |
+| urlCookiePolicy       | [string] Url of the complete cookie policies                                                  | #       |
+| infoCookiePerformance | [string] Text for explain actual use in site for cookie performance (see in Popup Preference) | empty   |
+| infoCookieAdvertising | [string] Text for explain actual use in site for cookie advertising (see in Popup Preference) | empty   |
+| infoCookieFunctional  | [string] Text for explain actual use in site for cookie functional (see in Popup Preference)  | empty   |
+| infoCookieAnalytics   | [string] Text for explain actual use in site for cookie analytics (see in Popup Preference)   | empty   |
+
 
 ## Callbacks
 ```

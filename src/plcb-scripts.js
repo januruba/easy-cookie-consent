@@ -67,12 +67,12 @@ const __popup = (opt) => `
 `;
 
 class Plcb {
-  constructor({ dayExpires,
-                urlCookiePolicy,
-                infoCookiePerformance,
-                infoCookieAdvertising,
-                infoCookieAnalytics,
-                infoCookieFunctional
+  constructor({ dayExpires = 365,
+                urlCookiePolicy = '#',
+                infoCookiePerformance = '',
+                infoCookieAdvertising = '',
+                infoCookieAnalytics = '',
+                infoCookieFunctional = ''
               } = opts) {
     this.cookieConsentName = 'plcb-consent';
     this.cookiePerformanceName = 'plcb-performance';
