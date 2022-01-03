@@ -1,6 +1,6 @@
 const __slide = (opt) => `
 <div class="inner">
-    <button class="plcb-leave" data-plcb="closeslide"><svg viewPort="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg"> <line x1="1" y1="11" x2="11" y2="1" stroke-width="2"/> <line x1="1" y1="1" x2="11" y2="11"  stroke-width="2"/></svg></button>
+    ${!!opt.withCloseOnSlide ? '<button class="plcb-leave" data-plcb="closeslide"><svg viewPort="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg"> <line x1="1" y1="11" x2="11" y2="1" stroke-width="2"/> <line x1="1" y1="1" x2="11" y2="11"  stroke-width="2"/></svg></button>' : ''}
     <div class="plcb-slide-text">
         <p><strong>Questo sito usa i cookies</strong></p>
         <p>Questo sito usa cookies tecnici per offrirti una migliore esperienza di navigazione. Pu&ograve; inoltre utilizzare cookie di "terze parti" (impostati da un sito web diverso da quello attualmente visitato)
@@ -68,6 +68,7 @@ const __popup = (opt) => `
 
 class Plcb {
   constructor({ dayExpires = 365,
+                withCloseOnSlide = true,
                 urlCookiePolicy = '#',
                 infoCookiePerformance = '',
                 infoCookieAdvertising = '',
@@ -82,6 +83,7 @@ class Plcb {
 
     this.options = {
       dayExpires,
+      withCloseOnSlide,
       urlCookiePolicy,
       infoCookiePerformance,
       infoCookieAdvertising,
@@ -183,6 +185,9 @@ class Plcb {
 
     this.elBtnCloseSlide.forEach(item => {
       item.addEventListener('click', event => {
+        plcb.setRefuseAll();
+        plcb.processUserInput();
+        //hide
         plcb.hideBar();
       });
     });
