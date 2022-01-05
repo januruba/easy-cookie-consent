@@ -183,7 +183,10 @@ class Plcb {
       item.addEventListener('click', event => {
         plcb.hidePopup(); 
         if(this.consentGiven()) {
+          plcb.showBackground();
           plcb.showBar();
+        } else {
+          plcb.hideBackground();
         }
       });  
     });
