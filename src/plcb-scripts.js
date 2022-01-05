@@ -108,8 +108,10 @@ class Plcb {
     this.getCookies();
     if(typeof(this.cookieConsent) === 'undefined') {
       this.showBar();
+      this.showBackground();
     } else {
       this.runCallbacks();
+      this.hideBackground();
     }
     this.initListeners();
   }
@@ -117,6 +119,7 @@ class Plcb {
   initDom() {
     this.elBar = document.querySelector('#plcb-slide');
     this.elPop = document.querySelector('#plcb-settings');
+    this.elBackground = document.querySelector('.plcb-container');
     this.startTemplate();
     this.elBtnCYes = document.querySelectorAll('*[data-plcb="accept"]');
     this.elBtnCNo = document.querySelectorAll('*[data-plcb="refuse"]');
@@ -162,6 +165,7 @@ class Plcb {
     
     this.elBtnSettings.forEach(item => {
       item.addEventListener('click', event => {
+        plcb.showBackground();
         plcb.hideBar();
         plcb.showPopup(); 
       });  
@@ -169,6 +173,7 @@ class Plcb {
     
     this.elBtnOpen.forEach(item => {
       item.addEventListener('click', event => {
+        plcb.showBackground();
         plcb.hidePopup();
         plcb.showBar(); 
       });  
@@ -221,6 +226,7 @@ class Plcb {
     this.logConsent(this);
     this.hideBar();
     this.hidePopup();
+    this.hideBackground();
     this.runCallbacks();
   } 
   
@@ -240,6 +246,14 @@ class Plcb {
   
   hidePopup() {
     this.elPop.classList.remove('shown');
+  }
+
+  hideBackground() {
+    this.elBackground.classList.add('hide');
+  }
+
+  showBackground() {
+    this.elBackground.classList.remove('hide');
   }
   
   fillData() {
