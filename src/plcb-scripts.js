@@ -40,19 +40,19 @@ const __popup = (opt) => `
         </label>
         <label>
           <input type="checkbox" name="plcb-functionality"> Cookies Funzionali
-          <small>Questi cookie rendono il sito pi&ugrave; facile da usare (ad esempio ricordando le impostazioni personalizzate dell'utente).<br /><b>${!!opt.infoCookieFunctional ? opt.infoCookieFunctional : ''}</b></small>
+          <small>Rendono il sito pi&ugrave; facile da usare (eventualmente salvando impostazioni di configurazione dell'utente) e pi&ugrave; interattivo (mappe, grafici, etc...).<br /><b>${!!opt.infoCookieFunctional ? opt.infoCookieFunctional : ''}</b></small>
         </label>
         <label>
           <input type="checkbox" name="plcb-analytics"> Cookies Analytics
-          <small>Questi cookie analizzano il traffico del sito web e ci&ograve; che i visitatori cliccano di pi&ugrave;.<br /><b>${!!opt.infoCookieAnalytics ? opt.infoCookieAnalytics : ''}</b></small>
+          <small>Vengono usati (anche se terzi) per migliorare la funzionalit&agrave; e la struttura del sito web, in base a come il sito viene utilizzato.<br /><b>${!!opt.infoCookieAnalytics ? opt.infoCookieAnalytics : ''}</b></small>
         </label>
         <label>
           <input type="checkbox" name="plcb-advertising"> Cookies Pubblicitari
-          <small>Questi cookie sono utilizzati per tracciare i visitatori attraverso i siti web per consentire agli editori di mostrare pubblicit&agrave; pertinenti e coinvolgenti.<br /><b>${!!opt.infoCookieAdvertising ? opt.infoCookieAdvertising : ''}</b></small>
+          <small>Utilizzati per tracciare i visitatori attraverso i siti web consentendo di mostrare pubblicit&agrave; pertinenti e coinvolgenti.<br /><b>${!!opt.infoCookieAdvertising ? opt.infoCookieAdvertising : ''}</b></small>
         </label>
         <label>
           <input type="checkbox" name="plcb-performance"> Cookies Performance
-          <small>Questi cookies sono utilizzati specificamente per raccogliere dati sul caricamento della pagina o sui messaggi di errore dell'utente nelle pagine web.<br /><b>${!!opt.infoCookiePerformance ? opt.infoCookiePerformance : ''}</b></small>
+          <small>Utilizzati specificamente per raccogliere dati sul caricamento della pagina o sui messaggi di errore dell'utente nelle pagine web.<br /><b>${!!opt.infoCookiePerformance ? opt.infoCookiePerformance : ''}</b></small>
         </label>
       </div>
       <small>
